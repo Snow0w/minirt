@@ -1,3 +1,5 @@
+#include <stddef.h>
+#include <libft.h>
 
 static double	atof_help(char *str, size_t *i, int *flag, double out)
 {
@@ -7,7 +9,7 @@ static double	atof_help(char *str, size_t *i, int *flag, double out)
 	(*i)++;
 	while (str[*i] && ft_isdigit(str[*i]))  
 	{
-		out = out * 10.0 + str[i] - '0';
+		out = out * 10.0 + (str[*i] - '0');
 		e++;
 		(*i)++;
 	}
@@ -38,7 +40,7 @@ double	unsecure_pseudo_atof(char *str, int *flag)
 
 	i = 0;
 	sign = 1.0;
-	sign_atof(&sign, str, &i)
+	sign_atof(&sign, str, &i);
 	out = 0.0;
 	cnt = 0;
 	while (str[i] && ft_isdigit(str[i]))  

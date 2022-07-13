@@ -1,4 +1,21 @@
 #include <data.h>
+#include <stdlib.h>
+
+void	free_vlist(t_vlist **scene_arg)
+{
+	t_vlist	*cur;
+	t_vlist	*prev;
+
+	cur = *scene_arg;
+	while (cur)
+	{
+		prev = cur;
+		cur = cur->next;
+		if (prev->data)
+			free(prev->data);
+		free(prev);
+	}
+}
 
 t_vlist	*vlist_new(void *data, int type)
 {

@@ -1,5 +1,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
+#include <libft.h>
+#include <parser.h>
 #include <get_next_line.h>
 
 int	add_new_scene_arg(t_vlist **scene_arg, char *str, int *flag)
@@ -13,6 +15,7 @@ int	add_new_scene_arg(t_vlist **scene_arg, char *str, int *flag)
 	}
 	if (!ft_strncmp(str, "A ", 2))
 		return (ambient_parsing(scene_arg, str + 1, flag));
+	/*
 	if (!ft_strncmp(str, "C ", 2))
 		return (camera_parsing(scene_arg, str + 1, flag));
 	if (!ft_strncmp(str, "L ", 2))
@@ -23,6 +26,7 @@ int	add_new_scene_arg(t_vlist **scene_arg, char *str, int *flag)
 		return (sphere_parsing(scene_arg, str + 2, flag));
 	if (!ft_strncmp(str, "cy ", 3))
 		return (cylinder_parsing(scene_arg, str + 2, flag));
+		*/
 	*flag = 0;
 	return (0);
 }
@@ -41,15 +45,16 @@ int	common_parser_work(char *argv, t_vlist **scene_arg)
 	while (str && flag)
 	{
 		if (add_new_scene_arg(scene_arg, str, &flag))
-			return (free_vlist_and_std_error(scene_arg, str)); //need to erite
+			return (free_vlist_and_std_error(scene_arg, str));
 		free(str);
 		str = get_next_line(fd);
 	}
 	if (!flag)
 	{
-		free(str); //maybe
-		free_vlist(scene_arg); //need to write
-		return (wrong_msg_file_parsing()); //need to erite
+		if (str)
+			free(str);
+		free_vlist(scene_arg);
+		return (wrong_msg_file_parsing(argv));
 	}
 	return (0);
 }

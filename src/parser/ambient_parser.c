@@ -1,5 +1,7 @@
 #include <parser.h>
 #include <stddef.h>
+#include <libft.h>
+#include <stdlib.h>
 
 static int	init_ambient_data(t_vlist **scene_arg, t_ambient *data)
 {
@@ -31,8 +33,6 @@ int	ambient_pars_ratio_token(t_ambient *data, char *str, t_unsizet token)
 
 int	ambient_pars_rgb_token(t_ambient *data, char *str, t_unsizet token)
 {
-	size_t	i;
-
 	if (!check_two_commas_in_token(str, token))
 		return (1);
 	if (check_valid_rgb_format(str, token))
@@ -58,9 +58,9 @@ int	ambient_pars_rgb_token(t_ambient *data, char *str, t_unsizet token)
 int	hub_ambient_token(t_ambient *data, char *str, t_unsizet token, size_t cnt)
 {
 	if (cnt == 0)
-		return (ambient_pars_ratio(data, str, token));
+		return (ambient_pars_ratio_token(data, str, token));
 	if (cnt == 1)
-		return (ambient_pars_rgb(data, str, token));
+		return (ambient_pars_rgb_token(data, str, token));
 	return (1);
 }
 
