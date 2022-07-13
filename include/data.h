@@ -26,9 +26,9 @@ typedef struct	s_coord
 
 typedef struct	s_rgb
 {
-	double	r;
-	double	b;
-	double	g;
+	int	r;
+	int	b;
+	int	g;
 }				t_rgb;
 
 typedef struct	s_ambient

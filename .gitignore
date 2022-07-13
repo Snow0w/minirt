@@ -1,3 +1,6 @@
 obj/
 tags
 *.swp
+obj/
+minirt
+*.o
