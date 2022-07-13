@@ -1,7 +1,7 @@
 #include <data.h>
 #include <stdlib.h>
 
-void	free_vlist(t_vlist **scene_arg)
+void	free_vlist(t_vlist **scene_arg);
 {
 	t_vlist	*cur;
 	t_vlist	*prev;
